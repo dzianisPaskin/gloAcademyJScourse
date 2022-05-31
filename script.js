@@ -12,7 +12,7 @@ let title = 'my project',
     console.log(screens.length);
     console.log(`Стоимость вёрстки экранов ${screenPrice}$`);
     console.log(`Стоимость разработки сайтов ${fullPrice}$`);
-    console.log(screens.toLowerCase().split());
+    console.log(screens.toLowerCase().split(', '));
     console.log(fullPrice * (rollback / 100));
 
 // alert('Hi');
