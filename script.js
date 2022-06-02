@@ -24,5 +24,4 @@ console.log(typeof adaptive);
 
 console.log(screens.length);
 console.log(servicePercentPrice);
-
-console.log(`Стоимость вёрстки экранов ${screenPrice} рублей/ долларова/ гривен/ юаней`);
+console.log(`Стоимость вёрстки экранов ${screenPrice} рублей/ долларова/ гривен/ юаней и Стоимость разработки сайтов ${fullPrice} рублей/ долларова/ гривен/ юаней`);
