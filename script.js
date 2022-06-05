@@ -14,17 +14,10 @@ let service1;
 let service2;
 
 
-// const isNumber = function (num) {
-//     return !isNaN(parseFloat(num)) && isFinite(num);
-// };
-
-const isNumber = (num) => {
-    if (num) {
-        return !isNaN(Number(num));
-    } else {
-        return false;
-    }
+const isNumber = function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
 };
+
 
 const asking = function () {
     title = prompt('Как называется ваш проект?', 'Калькулятор вёрскти');
@@ -48,13 +41,10 @@ const getAllServicePrices = function () {
         }
 
         let checkSum;
-        do {
+        while (!isNumber(checkSum)) {
             checkSum = prompt('Сколько это будет стоить?');
-            if (isNumber(checkSum)) {
-                sum += Number(checkSum);
-            }
-        } while (!isNumber(checkSum));
-
+            sum += Number(checkSum);
+        }
     }
     return sum;
 };
