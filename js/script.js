@@ -13,7 +13,7 @@ const totalCountOther = document.getElementsByClassName("total-input")[2];
 const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
 const screens = document.querySelectorAll(".screen");
-const screensWrapper = document.querySelector(".main-controls__views");
+// const screensWrapper = document.querySelector(".main-controls__views");
 
 const appData = {
   title: "",
@@ -30,11 +30,15 @@ const appData = {
   servicesNumber: {},
   services: {},
   init: function () {
-    startBtn.disabled = true;
+    // startBtn.disabled = true;
     appData.addTitle();
-    startBtn.addEventListener("click", appData.start);
+    startBtn.addEventListener("click", (e) => {
+      e.preventDefault(); //отменяем стандартное поведение 
+
+      appData.checkScreensPrice();
+    });
     buttonPlus.addEventListener("click", appData.addScreenBlock);
-    screensWrapper.addEventListener("input", appData.checkScreensPrice);
+    // screensWrapper.addEventListener("change", appData.checkScreensPrice);
     inputRange.addEventListener("input", appData.showRange);
   },
   addTitle: function () {
@@ -50,7 +54,6 @@ const appData = {
     appData.showResult();
   },
   showRange: function () {
-
     const textSpan = document.querySelector(".range-value");
     textSpan.textContent = inputRange.value + "%";
     appData.rollback = inputRange.value;
@@ -62,16 +65,31 @@ const appData = {
     fullTotalCount.value = appData.fullPrice;
   },
   checkScreensPrice: function () {
-    let disabled = false;
-    screens.forEach(function (screen) {
-      const select = screen.querySelector("select").value;
-      const input = screen.querySelector("input").value;
-      if (!select || !input) {
-        disabled = true;
+    const typeScreens = document.querySelectorAll(".type-screens"); //получаем все input, прежде присвоил класс
+    const numScreens = document.querySelectorAll(".num-screens"); ///получаем все select, прежде присвоил класс
+    const screenValues = [...typeScreens,...numScreens];//с помощью rest сохраняем все элементы input и select в один массив
+    appData.isError = false;
+    screenValues.forEach((input) => {
+      if(input.value === '') {
+        appData.isError = true;
       }
     });
+    
+    if(!appData.isError) {
+      appData.start();
 
-    startBtn.disabled = disabled;
+    }
+
+    // let disabled = false;
+    // screens.forEach(function (screen) {
+    //   const select = screen.querySelector("select").value;
+    //   const input = screen.querySelector("input").value;
+    //   if (!select || !input) {
+    //     disabled = true;
+    //   }
+    // });
+
+    // startBtn.disabled = disabled;
   },
   addScreens: function () {
     screens.forEach(function (screen, index) {
@@ -82,10 +100,10 @@ const appData = {
         id: index,
         name: selectName,
         price: +select.value * +input.value,
-        count: +input.value
+        count: +input.value,
       });
     });
-    startBtn.disabled = true;
+    // startBtn.disabled = true;
     console.log(appData.screens);
   },
   addServices: function () {
@@ -126,10 +144,10 @@ const appData = {
       +appData.screenPrice +
       appData.servicePricesNumber +
       appData.servicePricesPercent;
-      appData.servicePercentPrice =
+    appData.servicePercentPrice =
       appData.fullPrice - appData.fullPrice * (appData.rollback / 100);
-      totalCountRollback.value = appData.servicePercentPrice; 
-      totalCount.value = appData.screenCount;
+    totalCountRollback.value = appData.servicePercentPrice;
+    totalCount.value = appData.screenCount;
   },
   // getServicePercentPrices: function () {
   //   appData.servicePercentPrice =
