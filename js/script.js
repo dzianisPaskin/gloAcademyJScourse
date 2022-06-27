@@ -89,11 +89,13 @@ const appData = {
     const numScreens = document.querySelectorAll(".num-screens");
     const customCheckBox = document.querySelectorAll(".custom-checkbox");
     const inputRange = document.querySelector("input[type=range]");
+    const buttonPlus = document.querySelector(".screen-btn");
     const block = [
       ...typeScreens,
       ...numScreens,
       ...customCheckBox,
       inputRange,
+      buttonPlus
     ];
     block.forEach((item) => {
       item.disabled = true;
@@ -111,12 +113,14 @@ const appData = {
     const inputRangeValue = document.querySelector(".range-value");
     const screens = document.querySelectorAll(".screen");
     const hiddenCmsVariants = document.querySelector(".hidden-cms-variants");
+    const buttonPlus = document.querySelector(".screen-btn");
     const block = [
       ...typeScreens,
       ...numScreens,
       ...check,
       ...inputText,
       inputRange,
+      buttonPlus
     ];
 
     block.forEach((item) => {
@@ -138,6 +142,17 @@ const appData = {
     inputRangeValue.textContent = "0%";
     hiddenCmsVariants.style.display = "none";
     appData.screens = []
+    appData.screenCount = 0
+  appData.screenPrice = 0
+  appData.adaptive = false
+  appData.rollback = 0
+  appData.servicePricesPercent = 0
+  appData.servicePricesNumber = 0
+  appData.fullPrice = 0
+  appData.servicePercentPrice = 0
+  appData.servicesPercent = {}
+  appData.servicesNumber = {}
+  appData.services = {}
 
   },
   cmsOpen: function () {
