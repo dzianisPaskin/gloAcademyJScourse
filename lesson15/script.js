@@ -4,10 +4,10 @@ const DomElement = function (selector) {
   this.width = "100px";
   this.bg = "yellow";
   this.fontSize = "24px";
-  this.top = '';
-  this.right = '';
-  this.bottom = '';
-  this.left = '';
+  this.top = 0;
+  this.right = 0;
+  this.bottom = 0;
+  this.left = 0;
   this.createElem = function () {
     if (this.selector.slice(0, 1) === ".") {
       this.div = document.createElement("div");
@@ -42,39 +42,62 @@ const DomElement = function (selector) {
 };
 
 // const newP = new DomElement("#block");
-const square = new DomElement('.square');
-
+const square = new DomElement(".square");
 // newP.createElem();
 
-document.addEventListener('DOMContentLoaded', function() {
- 
-  let left = 0;
-  let right = 0;
-  let top = 0;
-  let bottom = 0;
- 
-window.addEventListener('keydown', function(event) {
-  square.createElem()
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    window.addEventListener("load", () => {
+      square.left = 0;
+      square.top = 0;
+    });
 
-  if (event.key == 'ArrowUp') {
-    bottom += 20;
-    square.bottom = bottom + 'px'
-    console.log('up')
-  } else if (event.key == 'ArrowDown') {
-    top += 20;
-    square.top = top + 'px'
-    console.log('down')
-  } else if(event.key == 'ArrowRight') {
-    left += 20;
-    square.left = left + 'px'
-    console.log('right')
-  
-  } else if(event.key == 'ArrowLeft') {
-    right += 20;
-    square.right = right + 'px'
-    console.log('left')
-  }
+    window.addEventListener("keydown", function (event) {
+      square.createElem();
+      switch (event.key) {
+        case "ArrowLeft":
+          square.left = parseInt(square.left) - 5 + "px";
+          break;
+        case "ArrowRight":
+          square.left = parseInt(square.left) + 5 + "px";
+          console.log("arrow rught");
+          break;
+        case "ArrowUp":
+          square.top = parseInt(square.top) - 5 + "px";
+          break;
+        case "ArrowDown":
+          square.top = parseInt(square.top) + 5 + "px";
+          break;
+        default:
+          console.log("Only Arrow Keys Are Allowed!");
+      }
 
-});
-}, false);
+      // let left = 0;
+      // let right = 0;
+      // let top = 0;
+      // let bottom = 0;
+
+      // if (event.key == 'ArrowUp') {
+      //   bottom += 20;
+      //   square.bottom = bottom + 'px'
+      //   console.log('up')
+      // } else if (event.key == 'ArrowDown') {
+      //   top += 20;
+      //   square.top = top + 'px'
+      //   console.log('down')
+      // } else if(event.key == 'ArrowRight') {
+      //   left += 20;
+      //   square.left = left + 'px'
+      //   console.log('right')
+
+      // } else if(event.key == 'ArrowLeft') {
+      //   right += 20;
+      //   square.right = right + 'px'
+      //   console.log('left')
+      // }
+    });
+  },
+  false
+);
 
