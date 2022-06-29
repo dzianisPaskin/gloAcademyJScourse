@@ -5,8 +5,6 @@ const DomElement = function (selector) {
   this.bg = "yellow";
   this.fontSize = "24px";
   this.top = 0;
-  this.right = 0;
-  this.bottom = 0;
   this.left = 0;
   this.createElem = function () {
     if (this.selector.slice(0, 1) === ".") {
@@ -20,8 +18,6 @@ const DomElement = function (selector) {
       font-size: ${this.fontSize};
       position: absolute;
       top: ${this.top};
-      right: ${this.right};
-      bottom: ${this.bottom};
       left: ${this.left};
       `;
       document.body.append(this.div);
@@ -48,6 +44,7 @@ const square = new DomElement(".square");
 document.addEventListener(
   "DOMContentLoaded",
   function () {
+    square.createElem();
     window.addEventListener("load", () => {
       square.left = 0;
       square.top = 0;
@@ -73,29 +70,7 @@ document.addEventListener(
           console.log("Only Arrow Keys Are Allowed!");
       }
 
-      // let left = 0;
-      // let right = 0;
-      // let top = 0;
-      // let bottom = 0;
-
-      // if (event.key == 'ArrowUp') {
-      //   bottom += 20;
-      //   square.bottom = bottom + 'px'
-      //   console.log('up')
-      // } else if (event.key == 'ArrowDown') {
-      //   top += 20;
-      //   square.top = top + 'px'
-      //   console.log('down')
-      // } else if(event.key == 'ArrowRight') {
-      //   left += 20;
-      //   square.left = left + 'px'
-      //   console.log('right')
-
-      // } else if(event.key == 'ArrowLeft') {
-      //   right += 20;
-      //   square.right = right + 'px'
-      //   console.log('left')
-      // }
+   
     });
   },
   false
