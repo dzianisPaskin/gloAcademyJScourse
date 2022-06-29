@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
   let top = 0;
   let bottom = 0;
  
-document.addEventListener('keydown', function(event) {
+window.addEventListener('keydown', function(event) {
   square.createElem()
-  let div = document.querySelector('.square')
+
   if (event.key == 'ArrowUp') {
     bottom += 20;
     square.bottom = bottom + 'px'
