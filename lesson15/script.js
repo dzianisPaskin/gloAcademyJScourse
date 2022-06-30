@@ -45,34 +45,31 @@ document.addEventListener(
   "DOMContentLoaded",
   function () {
     square.createElem();
+    const getElem = document.querySelector("div");
+
     window.addEventListener("load", () => {
-      square.left = 0;
-      square.top = 0;
+      getElem.style.left = 0;
+      getElem.style.top = 0;
     });
 
     window.addEventListener("keydown", function (event) {
-      square.createElem();
       switch (event.key) {
         case "ArrowLeft":
-          square.left = parseInt(square.left) - 5 + "px";
+          getElem.style.left = parseInt(getElem.style.left) - 5 + "px";
           break;
         case "ArrowRight":
-          square.left = parseInt(square.left) + 5 + "px";
-          console.log("arrow rught");
+          getElem.style.left = parseInt(getElem.style.left) + 5 + "px";
           break;
         case "ArrowUp":
-          square.top = parseInt(square.top) - 5 + "px";
+          getElem.style.top = parseInt(getElem.style.top) - 5 + "px";
           break;
         case "ArrowDown":
-          square.top = parseInt(square.top) + 5 + "px";
+          getElem.style.top = parseInt(getElem.style.top) + 5 + "px";
           break;
         default:
           console.log("Only Arrow Keys Are Allowed!");
       }
-
-   
     });
   },
   false
 );
-
